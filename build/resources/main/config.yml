@@ -1,0 +1,30 @@
+dupes:
+  ItemFrameDupe: false
+  ItemFrameDupeChance: 100
+
+  PistonShulkerDupe: false
+  PistonShulkerDupeChance: 100
+
+  Dupe3: false
+  Dupe3Chance: 100
+
+  Dupe4: false
+  Dupe4Chance: 100
+
+  Dupe5: false
+  Dupe5Chance: 100
+
+  Dupe6: false
+  Dupe6Chance: 100
+
+  Dupe7: false
+  Dupe7Chance: 100
+
+  Dupe8: false
+  Dupe8Chance: 100
+
+  Dupe9: false
+  Dupe9Chance: 100
+
+  Dupe10: false
+  Dupe10Chance: 100

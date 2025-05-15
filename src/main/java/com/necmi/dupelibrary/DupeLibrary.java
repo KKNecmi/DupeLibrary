@@ -1,0 +1,26 @@
+package com.necmi.dupelibrary;
+
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class DupeLibrary extends JavaPlugin {
+
+    @Override
+    public void onEnable() {
+        saveDefaultConfig();
+        getLogger().info("DupeLibrary enabled!");
+
+        if (getConfig().getBoolean("dupes.ItemFrameDupe", true)) {
+            new ItemFrameDupe(this);
+        }
+        if (getConfig().getBoolean("dupes.PistonShulkerDupe", true)) {
+            new PistonShulkerDupe(this);
+        }
+
+        new DupeCommand(this); // ← Komut burada aktive ediliyor
+    }
+
+    @Override
+    public void onDisable() {
+        getLogger().info("DupeLibrary disabled.");
+    }
+}

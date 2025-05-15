@@ -1,0 +1,10 @@
+name: DupeLibrary
+version: '1.0-SNAPSHOT'
+main: com.necmi.dupelibrary.DupeLibrary
+api-version: '1.21'
+authors: [ Necmi ]
+description: A Dupe Method Library
+commands:
+  dupelibrary:
+    description: DupeLibrary yönetim komutu
+    usage: /dupelibrary help
