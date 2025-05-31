@@ -5,8 +5,8 @@ dupes:
   PistonShulkerDupe: false
   PistonShulkerDupeChance: 100
 
-  Dupe3: false
-  Dupe3Chance: 100
+  AnvilDropDupe: false
+  AnvilDropDupeChance: 100
 
   Dupe4: false
   Dupe4Chance: 100

@@ -15,6 +15,9 @@ public class DupeLibrary extends JavaPlugin {
         if (getConfig().getBoolean("dupes.PistonShulkerDupe", true)) {
             new PistonShulkerDupe(this);
         }
+        if (getConfig().getBoolean("dupes.AnvilDropDupe", true)) {
+            new AnvilDropDupe(this);
+        }
 
         new DupeCommand(this); // ← Komut burada aktive ediliyor
     }
