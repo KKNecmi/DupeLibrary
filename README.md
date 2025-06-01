@@ -1,12 +1,16 @@
 # DupeLibrary
 
-**DupeLibrary** plugin for PaperMC 1.21.4 that adds various dupe to Minecraft.
+[![GitHub release](https://img.shields.io/github/release/KKNecmi/DupeLibrary?include_prereleases=&sort=semver&color=blue)](https://github.com/KKNecmi/DupeLibrary/releases/)
+[![License](https://img.shields.io/badge/License-MIT-blue)](https://github.com/KKNecmi/DupeLibrary/blob/main/LICENSE)
+[![issues - DupeLibrary](https://img.shields.io/github/issues/KKNecmi/DupeLibrary?color=darkgreen)](https://github.com/KKNecmi/DupeLibrary/issues)
+
+**DupeLibrary** plugin for PaperMC 1.21.4 that adds various dupes to Minecraft.
 
 ---
 
 ## 🚀 Features
 
-- **Toggle individual dupes** on/off with a command.
+- **Toggleable dupes** on/off with a command.
 - **Set custom chances** for each dupe.
 - Easy-to-use commands and configuration.
 
@@ -20,7 +24,7 @@
 | `PistonShulkerDupe` | Duplicates shulker boxes when pistons push | Enabled       |
 | `AnvilDropDupe`     | Duplicates items hit by falling anvils     | Enabled       |
 
-More modules can be added in the future!
+More dupes will be added in the future! We are open to opinions.
 
 ---
 
