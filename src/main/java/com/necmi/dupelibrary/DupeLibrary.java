@@ -19,7 +19,7 @@ public class DupeLibrary extends JavaPlugin {
             new AnvilDropDupe(this);
         }
 
-        new DupeCommand(this); // ← Komut burada aktive ediliyor
+        new DupeCommand(this);
     }
 
     @Override

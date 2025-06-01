@@ -1,16 +1,15 @@
 package com.necmi.dupelibrary;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
+import net.kyori.adventure.text.event.ClickEvent;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
-import net.md_5.bungee.api.chat.TextComponent;
-import net.md_5.bungee.api.chat.ClickEvent;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DupeCommand implements CommandExecutor {
 
@@ -29,17 +28,25 @@ public class DupeCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
+        if (!(sender instanceof org.bukkit.entity.Player player)) {
+            sender.sendMessage(Component.text("This command can only be used by players.").color(NamedTextColor.RED));
+            return true;
+        }
+
         if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
-            sender.sendMessage(ChatColor.GREEN + "[DupeLibrary] Komutlar:");
-            sender.sendMessage(ChatColor.YELLOW + "/dupelibrary help §7- Bu menüyü gösterir");
-            sender.sendMessage(ChatColor.YELLOW + "/dupelibrary list [sayfa] §7- Dupe modüllerini listeler");
-            sender.sendMessage(ChatColor.YELLOW + "/dupelibrary reload §7- config.yml dosyasını yeniden yükler");
+            player.sendMessage(Component.text("[DupeLibrary] Commands:").color(NamedTextColor.GREEN));
+            player.sendMessage(Component.text("/dupelibrary help").color(NamedTextColor.YELLOW)
+                    .append(Component.text(" - Shows this menu").color(NamedTextColor.GRAY)));
+            player.sendMessage(Component.text("/dupelibrary list [page]").color(NamedTextColor.YELLOW)
+                    .append(Component.text(" - Lists dupe modules").color(NamedTextColor.GRAY)));
+            player.sendMessage(Component.text("/dupelibrary reload").color(NamedTextColor.YELLOW)
+                    .append(Component.text(" - Reloads config.yml").color(NamedTextColor.GRAY)));
             return true;
         }
 
         if (args[0].equalsIgnoreCase("reload")) {
             plugin.reloadConfig();
-            sender.sendMessage(ChatColor.YELLOW + "[DupeLibrary] Config yeniden yüklendi!");
+            player.sendMessage(Component.text("[DupeLibrary] Config reloaded!").color(NamedTextColor.YELLOW));
             return true;
         }
 
@@ -56,7 +63,8 @@ public class DupeCommand implements CommandExecutor {
             if (page < 1) page = 1;
             if (page > totalPages) page = totalPages;
 
-            sender.sendMessage(ChatColor.AQUA + "Dupe Modülleri (Sayfa " + page + "/" + totalPages + "):");
+            player.sendMessage(Component.text("Dupe Modules (Page " + page + "/" + totalPages + "):")
+                    .color(NamedTextColor.AQUA));
             int start = (page - 1) * perPage;
             int end = Math.min(start + perPage, dupeModules.length);
 
@@ -66,52 +74,38 @@ public class DupeCommand implements CommandExecutor {
                 boolean enabled = plugin.getConfig().getBoolean(key, false);
                 int chance = plugin.getConfig().getInt(key + "Chance", 100);
 
-                TextComponent line = new TextComponent("§7 - " + module + " => ");
+                TextComponent.Builder line = Component.text()
+                        .append(Component.text(" - " + module + " => ").color(NamedTextColor.GRAY));
 
-                TextComponent toggleStatus = new TextComponent(enabled ? "§aAKTİF" : "§cPASİF");
-                toggleStatus.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/dupelibrary toggle " + module));
-                toggleStatus.setColor(enabled
-                        ? net.md_5.bungee.api.ChatColor.GREEN
-                        : net.md_5.bungee.api.ChatColor.RED);
-                toggleStatus.setBold(true);
+                line.append(Component.text(enabled ? "ACTIVE" : "DISABLED")
+                        .color(enabled ? NamedTextColor.GREEN : NamedTextColor.RED)
+                        .decorate(TextDecoration.BOLD)
+                        .clickEvent(ClickEvent.runCommand("/dupelibrary toggle " + module)));
 
-                TextComponent chanceText = new TextComponent(" §f(" + chance + "%)");
-                chanceText.setClickEvent(new ClickEvent(
-                        ClickEvent.Action.SUGGEST_COMMAND,
-                        "/dupelibrary " + module + " chance "
-                ));
-                chanceText.setColor(net.md_5.bungee.api.ChatColor.GRAY);
+                line.append(Component.text(" (" + chance + "%)").color(NamedTextColor.GRAY)
+                        .clickEvent(ClickEvent.suggestCommand("/dupelibrary " + module + " chance ")));
 
-                line.addExtra(toggleStatus);
-                line.addExtra(chanceText);
-
-                sender.spigot().sendMessage(line);
+                player.sendMessage(line.build());
             }
 
             if (totalPages > 1) {
-                TextComponent arrows = new TextComponent();
+                TextComponent.Builder arrows = Component.text();
 
                 if (page > 1) {
-                    TextComponent backArrow = new TextComponent("◀ [Geri]");
-                    backArrow.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/dupelibrary list " + (page - 1)));
-                    backArrow.setColor(net.md_5.bungee.api.ChatColor.YELLOW);
-                    backArrow.setBold(true);
-                    arrows.addExtra(backArrow);
+                    arrows.append(Component.text("◀ [Back]").color(NamedTextColor.YELLOW).decorate(TextDecoration.BOLD)
+                            .clickEvent(ClickEvent.runCommand("/dupelibrary list " + (page - 1))));
                 }
 
                 if (page < totalPages) {
                     if (page > 1) {
-                        arrows.addExtra(new TextComponent("    ")); // boşluk
+                        arrows.append(Component.text("    "));
                     }
 
-                    TextComponent nextArrow = new TextComponent("[İleri] ▶");
-                    nextArrow.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/dupelibrary list " + (page + 1)));
-                    nextArrow.setColor(net.md_5.bungee.api.ChatColor.YELLOW);
-                    nextArrow.setBold(true);
-                    arrows.addExtra(nextArrow);
+                    arrows.append(Component.text("[Next] ▶").color(NamedTextColor.YELLOW).decorate(TextDecoration.BOLD)
+                            .clickEvent(ClickEvent.runCommand("/dupelibrary list " + (page + 1))));
                 }
 
-                sender.spigot().sendMessage(arrows);
+                player.sendMessage(arrows.build());
             }
 
             return true;
@@ -121,7 +115,7 @@ public class DupeCommand implements CommandExecutor {
             String dupe = args[1];
             String key = "dupes." + dupe;
             if (!plugin.getConfig().contains(key)) {
-                sender.sendMessage("§c[DupeLibrary] Böyle bir dupe modülü yok: " + dupe);
+                player.sendMessage(Component.text("[DupeLibrary] No such dupe module: " + dupe).color(NamedTextColor.RED));
                 return true;
             }
 
@@ -129,11 +123,10 @@ public class DupeCommand implements CommandExecutor {
             plugin.getConfig().set(key, !current);
             plugin.saveConfig();
 
-            // Feedback mesajı
-            sender.sendMessage("§7[DupeLibrary] " + dupe + " durumu: " + (!current ? "§aAKTİF" : "§cPASİF"));
+            player.sendMessage(Component.text("[DupeLibrary] " + dupe + " status: ").color(NamedTextColor.GRAY)
+                    .append(Component.text(!current ? "ACTIVE" : "DISABLED").color(!current ? NamedTextColor.GREEN : NamedTextColor.RED)));
 
-            // Yeniden listeyi göster
-            Bukkit.dispatchCommand(sender, "dupelibrary list");
+            Bukkit.dispatchCommand(player, "dupelibrary list");
             return true;
         }
 
@@ -144,23 +137,23 @@ public class DupeCommand implements CommandExecutor {
             try {
                 int value = Integer.parseInt(args[2]);
                 if (value < 0 || value > 100) {
-                    sender.sendMessage("§c[DupeLibrary] Şans 0 ile 100 arasında olmalı!");
+                    player.sendMessage(Component.text("[DupeLibrary] Chance must be between 0 and 100!").color(NamedTextColor.RED));
                     return true;
                 }
 
                 plugin.getConfig().set(key, value);
                 plugin.saveConfig();
 
-                sender.sendMessage("§a[DupeLibrary] " + dupe + " şansı %"+ value +" olarak ayarlandı.");
-                Bukkit.dispatchCommand(sender, "dupelibrary list");
+                player.sendMessage(Component.text("[DupeLibrary] " + dupe + " chance set to " + value + "%").color(NamedTextColor.GREEN));
+                Bukkit.dispatchCommand(player, "dupelibrary list");
             } catch (NumberFormatException e) {
-                sender.sendMessage("§c[DupeLibrary] Geçersiz sayı girdin: " + args[2]);
+                player.sendMessage(Component.text("[DupeLibrary] Invalid number: " + args[2]).color(NamedTextColor.RED));
             }
 
             return true;
         }
 
-        sender.sendMessage(ChatColor.RED + "[DupeLibrary] Geçersiz komut! /dupelibrary help");
+        player.sendMessage(Component.text("[DupeLibrary] Invalid command! Use /dupelibrary help").color(NamedTextColor.RED));
         return true;
     }
 }

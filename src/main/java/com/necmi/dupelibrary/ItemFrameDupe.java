@@ -35,7 +35,6 @@ public class ItemFrameDupe implements Listener {
 
         int chance = plugin.getConfig().getInt("dupes.ItemFrameDupeChance", 100);
 
-        // Dupe gerçekleşecek mi?
         if (random.nextInt(100) < chance) {
             ItemStack dupeItem = item.clone();
             player.getWorld().dropItemNaturally(frame.getLocation(), dupeItem);
