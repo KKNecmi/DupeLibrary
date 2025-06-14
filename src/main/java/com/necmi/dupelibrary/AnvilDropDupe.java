@@ -30,7 +30,6 @@ public class AnvilDropDupe implements Listener {
 
         int chance = plugin.getConfig().getInt("dupes.AnvilDropDupeChance", 100);
 
-        // Wait a tick so the anvil fully lands
         new BukkitRunnable() {
             @Override
             public void run() {

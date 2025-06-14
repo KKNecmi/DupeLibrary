@@ -20,9 +20,9 @@
 
 | Module              | Description                                | Default State |
 |---------------------|--------------------------------------------|---------------|
-| `ItemFrameDupe`     | Duplicates items when breaking item frames | Enabled       |
-| `PistonShulkerDupe` | Duplicates shulker boxes when pistons push | Enabled       |
-| `AnvilDropDupe`     | Duplicates items hit by falling anvils     | Enabled       |
+| `ItemFrameDupe`     | Duplicates items when breaking item frames | Disabled      |
+| `PistonShulkerDupe` | Duplicates shulker boxes when pistons push | Disabled      |
+| `AnvilDropDupe`     | Duplicates items hit by falling anvils     | Disabled      |
 
 More dupes will be added in the future! We are open to opinions.
 
@@ -47,9 +47,9 @@ Example configuration:
 
 ```yaml
 dupes:
-  ItemFrameDupe: true
+  ItemFrameDupe: false
   ItemFrameDupeChance: 100
-  PistonShulkerDupe: true
+  PistonShulkerDupe: false
   PistonShulkerDupeChance: 100
-  AnvilDropDupe: true
+  AnvilDropDupe: false
   AnvilDropDupeChance: 100
