@@ -15,7 +15,7 @@
 - Easy-to-use commands and configuration.
 
 
-<p align="left"> <img src="https://github.com/KKNecmi/DupeLibrary/blob/main/image/screenshot.png" alt="Preview Dupes" width="300"/> </p>
+<p align="left"> <img src="https://github.com/KKNecmi/DupeLibrary/blob/master/image/screenshot.png" alt="Preview Dupes" width="300"/> </p>
 
 ---
 
