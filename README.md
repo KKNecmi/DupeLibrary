@@ -14,6 +14,9 @@
 - **Set custom chances** for each dupe.
 - Easy-to-use commands and configuration.
 
+
+<p align="left"> <img src="https://github.com/KKNecmi/DupeLibrary/blob/main/image/screenshot.png" alt="Preview Dupes" width="300"/> </p>
+
 ---
 
 ## 📦 Dupe Modules
