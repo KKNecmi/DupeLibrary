@@ -27,8 +27,9 @@
 | `PistonShulkerDupe` | Duplicates shulker boxes when pistons push             | Disabled      |
 | `AnvilDropDupe`     | Duplicates items hit by falling anvils                 | Disabled      |
 | `LavaDupe`          | Duplicates items By Dropping to Lava With Hopper Under | Disabled      |
+| `CactusDupe`        | Duplicates items By Dropping them on top of a cactus   | Disabled      |
 
-More dupes will be added in the future! We are open to opinions.
+More dupes will be added in the future! I am open to opinions.
 
 ---
 
@@ -59,3 +60,5 @@ dupes:
   AnvilDropDupeChance: 100
   LavaDupe: false
   LavaDupeChance: 100
+  CactusDupe: false
+  CactusDupeChance: 100

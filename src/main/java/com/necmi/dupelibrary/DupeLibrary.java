@@ -21,6 +21,9 @@ public class DupeLibrary extends JavaPlugin {
         if (getConfig().getBoolean("dupes.LavaDupe", true)) {
             new LavaDupe(this);
         }
+        if (getConfig().getBoolean("dupes.CactusDupe", true)) {
+            new CactusDupe(this);
+        }
 
         new DupeCommand(this);
     }

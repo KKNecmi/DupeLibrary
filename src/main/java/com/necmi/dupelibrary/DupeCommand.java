@@ -21,7 +21,7 @@ public class DupeCommand implements CommandExecutor {
     }
 
     private final String[] dupeModules = {
-            "ItemFrameDupe", "PistonShulkerDupe", "AnvilDropDupe", "LavaDupe", "Dupe5",
+            "ItemFrameDupe", "PistonShulkerDupe", "AnvilDropDupe", "LavaDupe", "CactusDupe",
             "Dupe6", "Dupe7", "Dupe8", "Dupe9", "Dupe10"
     };
 

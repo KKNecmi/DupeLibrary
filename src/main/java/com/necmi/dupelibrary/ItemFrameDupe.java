@@ -39,8 +39,6 @@ public class ItemFrameDupe implements Listener {
             ItemStack dupeItem = item.clone();
             player.getWorld().dropItemNaturally(frame.getLocation(), dupeItem);
             player.sendMessage("§a[DupeLibrary] Dupe succeeded! Extra item dropped.");
-        } else {
-            player.sendMessage("§c[DupeLibrary] Dupe failed.");
         }
     }
 }
