@@ -18,6 +18,9 @@ public class DupeLibrary extends JavaPlugin {
         if (getConfig().getBoolean("dupes.AnvilDropDupe", true)) {
             new AnvilDropDupe(this);
         }
+        if (getConfig().getBoolean("dupes.LavaDupe", true)) {
+            new LavaDupe(this);
+        }
 
         new DupeCommand(this);
     }

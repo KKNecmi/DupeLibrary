@@ -21,11 +21,12 @@
 
 ## 📦 Dupe Modules
 
-| Module              | Description                                | Default State |
-|---------------------|--------------------------------------------|---------------|
-| `ItemFrameDupe`     | Duplicates items when breaking item frames | Disabled      |
-| `PistonShulkerDupe` | Duplicates shulker boxes when pistons push | Disabled      |
-| `AnvilDropDupe`     | Duplicates items hit by falling anvils     | Disabled      |
+| Module              | Description                                            | Default State |
+|---------------------|--------------------------------------------------------|---------------|
+| `ItemFrameDupe`     | Duplicates items when breaking item frames             | Disabled      |
+| `PistonShulkerDupe` | Duplicates shulker boxes when pistons push             | Disabled      |
+| `AnvilDropDupe`     | Duplicates items hit by falling anvils                 | Disabled      |
+| `LavaDupe`          | Duplicates items By Dropping to Lava With Hopper Under | Disabled      |
 
 More dupes will be added in the future! We are open to opinions.
 
@@ -56,3 +57,5 @@ dupes:
   PistonShulkerDupeChance: 100
   AnvilDropDupe: false
   AnvilDropDupeChance: 100
+  LavaDupe: false
+  LavaDupeChance: 100

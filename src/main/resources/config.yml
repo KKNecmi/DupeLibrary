@@ -8,8 +8,8 @@ dupes:
   AnvilDropDupe: false
   AnvilDropDupeChance: 100
 
-  Dupe4: false
-  Dupe4Chance: 100
+  LavaDupe: false
+  LavaDupeChance: 100
 
   Dupe5: false
   Dupe5Chance: 100
