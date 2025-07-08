@@ -27,7 +27,10 @@ public class DupeCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+        if (!sender.isOp()) {
+            sender.sendMessage(Component.text("You don't have permission to use this command!").color(NamedTextColor.RED));
+            return true;
+        }
         if (!(sender instanceof org.bukkit.entity.Player player)) {
             sender.sendMessage(Component.text("This command can only be used by players.").color(NamedTextColor.RED));
             return true;
