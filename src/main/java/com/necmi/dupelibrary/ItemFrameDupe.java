@@ -38,7 +38,6 @@ public class ItemFrameDupe implements Listener {
         if (random.nextInt(100) < chance) {
             ItemStack dupeItem = item.clone();
             player.getWorld().dropItemNaturally(frame.getLocation(), dupeItem);
-            player.sendMessage("§a[DupeLibrary] Dupe succeeded! Extra item dropped.");
         }
     }
 }
