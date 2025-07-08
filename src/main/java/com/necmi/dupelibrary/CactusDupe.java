@@ -48,6 +48,6 @@ public class CactusDupe implements Listener {
 
         item.setItemStack(stack);
 
-        block.breakNaturally();
+        block.setType(Material.AIR);
     }
 }
