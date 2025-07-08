@@ -10,9 +10,12 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
+import java.util.Random;
+
 public class CactusDupe implements Listener {
 
     private final Plugin plugin;
+    private final Random random = new Random();
 
     public CactusDupe(Plugin plugin) {
         this.plugin = plugin;
@@ -21,8 +24,13 @@ public class CactusDupe implements Listener {
 
     @EventHandler
     public void onItemTouchCactus(EntityDamageEvent event) {
+        if (!plugin.getConfig().getBoolean("dupes.CactusDupe", false)) return;
+
         if (!(event.getEntity() instanceof Item)) return;
         if (event.getCause() != EntityDamageEvent.DamageCause.CONTACT) return;
+
+        int chance = plugin.getConfig().getInt("dupes.CactusDupeChance", 100);
+        if (random.nextInt(100) >= chance) return;
 
         Item item = (Item) event.getEntity();
         Block block = item.getLocation().getBlock();
